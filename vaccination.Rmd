@@ -1,0 +1,94 @@
+# Hazal Gunduz
+
+# Tidying and Transforming Vaccination Data
+
++---------+--------------+--------------+--------------+--------------+------------+
+| Col1    | Col2         | Col3         | Col4         | Col5         | Col6       |
++=========+==============+==============+==============+==============+============+
+| Age     | Population % | Population % | Severe Cases | Severe Cases | Efficacy   |
++---------+--------------+--------------+--------------+--------------+------------+
+|         | Not Vax %    | Fully Vax %  | Not Vax      | Fully Vax    | vs. severe |
+|         |              |              |              |              |            |
+|         |              |              | per 100K     | per 100K     | disease    |
++---------+--------------+--------------+--------------+--------------+------------+
+| \<50 \| | 1,116,834 \| | 3,501,118 \| | 43 \|        | 11 \|        |            |
++---------+--------------+--------------+--------------+--------------+------------+
+|         | 23.3%        | 73.0%        |              |              |            |
++---------+--------------+--------------+--------------+--------------+------------+
+| > 50    | 186,078      | 2,133,516    | 171          | 290          |            |
++---------+--------------+--------------+--------------+--------------+------------+
+|         | 7.9%         | 90.4%        |              |              |            |
++---------+--------------+--------------+--------------+--------------+------------+
+
+(1) Do you have enough information to calculate the total population? What does this total population represent?\
+    =\> There is not enough information to calculate the total population. The total population we have shows the vaccination rate of hospitalized people under the age of 50 and over the age of 50.
+
+(2) Calculate the Efficacy vs. Disease; Explain your results.
+
+=\> 23 percent of the population under 50 have not been vaccinated, 73 percent have been vaccinated. 7.9 percent of the population over 50 have not been vaccinated, 90.4 percent have been vaccinated.
+
+(3) From your calculation of efficacy vs. disease, are you able to compare the rate of severe cases in unvaccinated individuals to that in vaccinated individuals?
+
+=\> \<50 =\> 1 - (11 /43)
+
+=\> \>50 =\> 1 - (290 / 171)
+
+The chart above describes August 2021 data for Israeli hospitalization ("Severe Cases") rates for people under 50 (assume "50 and under") and over 50, for both un-vaccinated and fully vaccinated populations. Analyze the data, and try to answer the questions posed in the spreadsheet. You'll need some high level domain knowledge around (1) Israel's total population, (2) Who is eligible to receive vaccinations, and (3) What does it mean to be fully vaccinated? Please note any apparent discrepancies that you observe in your analysis.
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(openintro)
+```
+
+```{r install-packages, message=FALSE, eval=FALSE}
+install.packages("tidyverse")
+install.packages("openintro")
+```
+
+```{r}
+library(RCurl)
+library(knitr)
+library(ggrepel)
+library(cowplot)
+library(ggplot2)
+```
+
+(1) Create a .CSV file (or optionally, a relational database!) that includes all the information above. You're encouraged to use a "wide" structure similar to how the information appears above, so that you can practice tidying and transformations as described below.
+
+(2) Read the information from your .CSV file into R, and use tidyr and dplyr as needed to tidy and transform your data.
+
+(3) Perform analysis as described in the spreadsheet and above.
+
+(4) Your code should be in an R Markdown file, posted to rpubs.com, and should include narrative descriptions of your data cleanup work, analysis, and conclusions. Please include in your homework submission. The URL to the .Rmd file in your GitHub repository and The URL for your rpubs.com web page.
+
+```{r}
+library(DT)
+library(tidyr)
+library(dplyr)
+```
+
+```{r heading}
+head(israeli_vaccination_data_analysis_start)
+```
+
+```{r}
+colnames(israeli_vaccination_data_analysis_start)
+```
+
+```{r}
+colnames(israeli_vaccination_data_analysis_start) <- c("age", "population %", "severe", "cases", "efficacy")
+str(israeli_vaccination_data_analysis_start)
+```
+
+```{r}
+summary(israeli_vaccination_data_analysis_start)
+```
+
+```{r}
+print(israeli_vaccination_data_analysis_start)
+```
+
+Github =\> <https://github.com/Gunduzhazal/israeli_vaccination>
+
+Rpubs =\> <https://rpubs.com/gunduzhazal/815356>
