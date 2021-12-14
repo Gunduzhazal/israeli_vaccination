@@ -92,3 +92,4 @@ print(israeli_vaccination_data_analysis_start)
 Github =\> <https://github.com/Gunduzhazal/israeli_vaccination>
 
 Rpubs =\> <https://rpubs.com/gunduzhazal/815356>
+
